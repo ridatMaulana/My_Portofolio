@@ -2,18 +2,30 @@
 
  @section('content')
   <!-- Content Header (Page header) -->
+  @if(\Auth::user())
     <section class="content-header">
       <h1>
-        {{ empty($result) ? 'Tambah' : 'Edit' }} Data Contact Us
+        {{ empty($result) ? 'Tambah' : 'Edit' }} Contact Us
         <small>Ridat Maulana</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Data Contact Us</li>
-        <li class="active">{{ empty($result) ? 'Tambah' : 'Edit' }} Data Contact Us</li>
+        <li>Contact Us</li>
+        <li class="active">{{ empty($result) ? 'Tambah' : 'Edit' }} Contact Us</li>
       </ol>
     </section>
-
+  @else
+  <section class="content-header">
+      <h1>
+        Contact Us
+        <small>Ridat Maulana</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Contact Us</li>
+      </ol>
+    </section>
+  @endif
     <!-- Main content -->
     <section class="content">
       @include('templates/feedback')

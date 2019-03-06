@@ -140,12 +140,18 @@
                 <div class="pull-left">
                   <a href="{{ url('/') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
+                @if(\Auth::user())
                 <div class="pull-right">
                   <form action="{{ url('logout') }}" method="POST">
                     {{ csrf_field() }}
                     <button type="submit" class="btn btn-default btn-fist">Sign out</button>
                   </form>
                 </div>
+                @else
+                <div class="pull-right">
+                    <a href="{{url('login')}}" class="btn btn-default btn-fist">Login</a>
+                </div>
+                @endif
               </li>
             </ul>
           </li>
@@ -171,8 +177,12 @@
         </div>
         <div class="pull-left info">
           <p>Ridat Maulana</p>
+          @if(\Auth::user())
           <a href="#"><i class="fa fa-circle text-success"></i> Admin</a>
+          @else
+          <a href="#"><i class="fa fa-circle text-danger"></i> Guest</a>
         </div>
+        @endif
       </div>
       <!-- search form -->
       <form action="#" method="get" class="sidebar-form">
@@ -185,10 +195,15 @@
       <ul class="sidebar-menu">
         <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
+        @if(\Auth::user())
         <li><a href="{{ asset('/') }}"><i class="fa fa-book"></i> Home</a></li>
         <li><a href="{{ asset('Project') }}"><i class="fa fa-book"></i> Project</a></li>
         <li><a href="{{ asset('Tipe') }}"><i class="fa fa-book"></i> Tipe</a></li>
         <li><a href="{{ asset('Contact') }}"><i class="fa fa-user"></i> Contact Us</a></li>
+        @else
+        <li><a href="{{ asset('/') }}"><i class="fa fa-book"></i> Home</a></li>
+        <li><a href="{{ asset('Contact/add') }}"><i class="fa fa-user"></i> Contact Us</a></li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

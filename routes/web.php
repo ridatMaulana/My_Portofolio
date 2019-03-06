@@ -13,12 +13,14 @@
 
 Route::auth();
 
-Route::group(['middleware'=>'auth'], function(){
-
 Route::get('/','projectController@home');
 Route::get('Project/{id_project}/detail','projectController@detail');
 Route::get('Contact/add', 'contactController@create');
 Route::post('Contact/add', 'contactController@store');
+
+Route::group(['middleware'=>'auth'], function(){
+
+// Route::get('/','projectController@home');
 
 Route::get('Contact', 'contactController@index');
 
